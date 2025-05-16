@@ -4,7 +4,7 @@ import { redirect } from "react-router-dom"
 
 export const deleteJobAction = async ({params}) => {
   try {
-    await customAxios.delete(`/jobs/${params.id}`, {withCredentials: true})
+    await customAxios.delete(`/jobs/${params.id}`)
     toast.success('Job deleted.')
   } catch (err) {
     const response = err?.response?.data

@@ -6,7 +6,7 @@ import ChartsContainer from '../components/ChartsContainer'
 
 export const StatsLoader = async () => {
   try {
-   const {data} = await CustomAxios.get('/jobs/stats', {withCredentials: true})
+   const {data} = await CustomAxios.get('/jobs/stats')
    return data
   }
   catch (err) {

@@ -24,10 +24,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
-app.use(cors({
-    origin: process.env.FRONTEND_SERVER,
-    credentials: true
-}))
+
 // Expose public folder
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.static(path.resolve(__dirname, './public')))

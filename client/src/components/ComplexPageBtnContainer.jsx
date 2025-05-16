@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const ComplexPageBtnContainer = () => {
     const {data: {numOfPages, currentPage}} = useAllJobsContext()
-    const pages = Array.from({length: numOfPages }, (_,i) => i + 1)
+    // const pages = Array.from({length: numOfPages }, (_,i) => i + 1)
 
     const {search, pathname} = useLocation()
     const navigate = useNavigate()

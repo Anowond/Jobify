@@ -11,7 +11,7 @@ export const allJobsLoader = async ({request}) => {
     ...new URL(request.url).searchParams.entries()
   ])
   try {
-    const {data} = await customAxios.get('/jobs', {params, withCredentials: true})
+    const {data} = await customAxios.get('/jobs', {params})
     return {data, searchValues: {...params}}
   } catch (err) {
     handleAPIErrror(err)

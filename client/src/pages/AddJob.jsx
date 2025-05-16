@@ -1,4 +1,4 @@
-import { Form, useOutletContext, redirect } from "react-router-dom"
+import { Form, redirect } from "react-router-dom"
 import Wrapper from "../assets/wrappers/DashboardFormPage"
 import { Input } from "../components"
 import { JOB_STATUS, JOB_TYPES } from "../utils/constants"
@@ -12,7 +12,7 @@ export const createJob = async ({request}) => {
   try {
     const formData = await request.formData()
     const data = Object.fromEntries(formData)
-    await customAxios.post('/jobs', data, {withCredentials: true})
+    await customAxios.post('/jobs', data)
     toast.success('Job created')
     return redirect('/dashboard/all-jobs')
   } catch (err) {
@@ -21,7 +21,6 @@ export const createJob = async ({request}) => {
 }
  
 const AddJob = () => {
-  const {user} = useOutletContext()
   return (
     <Wrapper>
         <Form method="post" className="form">

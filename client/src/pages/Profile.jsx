@@ -5,7 +5,6 @@ import CustomAxios from '../utils/customAxios'
 import {toast} from 'react-toastify'
 import handleAPIErrors from '../utils/handleAPIErrors'
 import SubmitBtn from '../components/SubmitBtn'
-import { useDashboardContext } from './DashboardLayout'
 
 export const updateUserAction = async ({request}) => {
   try {
@@ -16,7 +15,7 @@ export const updateUserAction = async ({request}) => {
       toast.error('Image file is too big')
       return
     }
-    const {data} = await CustomAxios.patch('/users/update', formData, {withCredentials: true})
+    const {data} = await CustomAxios.patch('/users/update', formData)
     toast.success(data.msg)
   } catch (err) {
     handleAPIErrors(err)

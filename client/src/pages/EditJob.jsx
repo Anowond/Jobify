@@ -9,7 +9,7 @@ import SubmitBtn from '../components/SubmitBtn'
 
 export const getJobLoader = async ({params}) => {
   try {
-    const {data} = await CustomAxios.get(`/jobs/${params.id}`, {withCredentials: true})
+    const {data} = await CustomAxios.get(`/jobs/${params.id}`)
     return data.job
   } catch (err) {
     const response = err?.response?.data
@@ -23,7 +23,7 @@ export const updateJobAction = async ({request, params}) => {
     try {
       const formData = await request.formData()
       const data = Object.fromEntries(formData)
-      await CustomAxios.patch(`/jobs/${params.id}`, data, {withCredentials: true})
+      await CustomAxios.patch(`/jobs/${params.id}`, data)
       toast.success('Job updated successfully.')
       return redirect('../all-jobs')
     } catch (err) {

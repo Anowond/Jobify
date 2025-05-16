@@ -10,7 +10,7 @@ export const loginAction = async ({request}) => {
   try {
     const formData = await request.formData()
     const data = Object.fromEntries(formData)
-     const response = await customAxios.post('/auth/login', data, {withCredentials: true})
+     const response = await customAxios.post('/auth/login', data)
     toast.success(response.data.msg)
     return redirect('/dashboard')
   } catch (err) {
@@ -27,7 +27,7 @@ const Login = () => {
         email: 'test@mail.com',
         password: 'Passw0rd'
       }
-      await customAxios.post('/auth/login', data, {withCredentials: true})
+      await customAxios.post('/auth/login', data)
       toast.success('Take a test drive !')
       navigate('/dashboard')
     } catch (err) {

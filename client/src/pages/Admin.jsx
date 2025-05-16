@@ -7,7 +7,7 @@ import {FaCalendarCheck, FaSuitcaseRolling} from 'react-icons/fa'
 
 export const AdminLoader = async () => {
   try {
-    const response = await CustomAxios.get('/users/admin/stats', {withCredentials: true})
+    const response = await CustomAxios.get('/users/admin/stats')
     return response.data
   } catch (err) {
     toast.error(err)

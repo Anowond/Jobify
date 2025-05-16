@@ -8,7 +8,7 @@ const RequireAuth = ({children}) => {
 
     useEffect(() => {
         const getCurrentUser = async () => {
-            const response = await customAxios.get('/users/getCurrentUser', {withCredentials: true})
+            const response = await customAxios.get('/users/getCurrentUser')
             if (response.status === 200) {
                 setIsAuth(true)
             } else {

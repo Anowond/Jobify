@@ -1,4 +1,4 @@
-import { Form, Link, redirect, useNavigation } from "react-router-dom"
+import { Form, Link, redirect } from "react-router-dom"
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage"
 import { Logo, Input } from "../components"
 import customAxios from "../utils/customAxios"
@@ -9,7 +9,7 @@ export const registerAction = async ({request}) => {
   try {
     const formData = await request.formData()
     const data = Object.fromEntries(formData)
-    await customAxios.post('/auth/register', data, {withCredentials: true})
+    await customAxios.post('/auth/register', data)
     toast.success('Registration sucessful !')
     return redirect('/dashboard')
   } catch (err) {

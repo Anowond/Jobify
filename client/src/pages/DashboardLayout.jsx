@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 
 export const DashboardLoader = async () => {
   try {
-    const {data} = await customAxios.get('/users/getCurrentUser', {withCredentials: true})
+    const {data} = await customAxios.get('/users/getCurrentUser')
     return data
   } catch (err) {
     return redirect('/')
@@ -37,7 +37,7 @@ const DashboardLayout = () => {
 
   const logout = async () => {
     try {
-      const response = await customAxios('/auth/logout', {withCredentials: true})
+      const response = await customAxios('/auth/logout')
       toast.success(response.data.msg)
       navigate('/')
     } catch (err) {
