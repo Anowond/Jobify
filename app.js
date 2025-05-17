@@ -27,7 +27,7 @@ process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
 // Expose public folder
 const __dirname = dirname(fileURLToPath(import.meta.url))
-app.use(express.static(path.resolve(__dirname, './public')))
+app.use(express.static(path.resolve(__dirname, './client/dist')))
 
 //cloudinary
 cloudinary.config({
@@ -41,7 +41,7 @@ app.use('/api/jobs', authMiddleware, jobRouter)
 app.use('/api/users', authMiddleware, userRouter)
 
 app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+    res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
 })
 
 // Not found Middleware

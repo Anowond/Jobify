@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon app.js",
-    "setup": "yarn install && cd client && yarn install"
+    "setup": "yarn install && cd client && yarn install",
+    "setup-production": "yarn install && cd client && yarn install && yarn build"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
