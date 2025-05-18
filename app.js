@@ -3,6 +3,8 @@ dotenv.config()
 import express from 'express'
 import 'express-async-errors'
 import morgan from 'morgan'
+import helmet from 'helmet'
+import mongoSanitize from 'express-mongo-sanitize'
 import cookieParser from 'cookie-parser'
 import jobRouter from './routes/jobRouter.js'
 import userRouter from './routes/userRouter.js'
@@ -12,7 +14,7 @@ import ErrorHandlerMiddleware from './middlewares/ErrorHandlerMiddleware.js.js'
 import {authMiddleware} from './middlewares/authMiddleware.js'
 import cloudinary from 'cloudinary'
 connection()
-import cors from 'cors'
+
 //public
 import {dirname} from 'path'
 import { fileURLToPath } from 'url'
@@ -24,6 +26,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
+app.use(helmet())
+app.use(mongoSanitize())
 
 // Expose public folder
 const __dirname = dirname(fileURLToPath(import.meta.url))
