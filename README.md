@@ -7,4 +7,5 @@ Avec cette application, on peut créer, modifier, supprimer, et rechercher des j
 
 Il est possible de tester l'application grâce à un compte de test pré-configuré.
 
-L'application est déployée sur Render et est disponible ici : [Jobify](https://jobify-7cza.onrender.com) 
+L'application est déployée sur Render et est disponible ici : [Jobify](https://jobify-3a8t.onrender.com) 
+(l'application est hebergée sur Render, qui met 'en standy' les services qui ne sont pas utilisés pendant quelques minutes, provoquant l'affichage d'une erreur 502; une autre solution d'herbergement fiable est en cours de recherche...)  
