@@ -1,7 +1,7 @@
 import Job from "../database/models/Job.js"
 import User from "../database/models/User.js"
 import cloudinary from 'cloudinary'
-import {promises as fs} from 'fs'
+import { formatImage } from "../middlewares/multerMiddleware.js"
 
 // get current suer
 export const getCurrentUser = async (req,res) => {
@@ -21,10 +21,10 @@ export const updateUser = async (req,res) => {
     // Remove password from request
     const newUser = {...req.body}
     delete newUser.password
-    // If user sent new avatar, remove it from local server and ad dit to cloudinary
+    // If user sent new avatar, add it to cloudinary
     if (req.file) {
-        const response = await cloudinary.v2.uploader.upload(req.file.path)
-        await fs.unlink(req.file.path)
+        const file = formatImage(req.file)
+        const response = await cloudinary.v2.uploader.upload(file)
         newUser.avatar = response.secure_url
         newUser.avatarPublicId = response.public_id
     }

@@ -1,15 +1,9 @@
 import multer from "multer";
+import DataParser from 'datauri/parser.js'
+import path from 'path'
 import { BadRequest } from "../errors/errors.js";
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads')
-    },
-    filename: (req, file, cb) => {
-        const filename = file.originalname
-        cb(null, filename)
-    },
-})
+const storage = multer.memoryStorage()
 
 const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
@@ -21,4 +15,11 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({storage, fileFilter})
 
+const parser = new DataParser()
+
+export const formatImage = file => {
+    const fileExtension = path.extname(file.originalname).toString()
+    return parser.format(fileExtension, file.buffer).content
+}
+ 
 export default upload

@@ -19,6 +19,7 @@ connection()
 import {dirname} from 'path'
 import { fileURLToPath } from 'url'
 import path from 'path'
+import { Script } from 'vm'
 
 const app = express()
 
@@ -26,7 +27,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
-app.use(helmet())
+// Content Security Policies
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        imgSrc: ["'self'", "data:", "https://res.cloudinary.com"]
+    }
+}))
 app.use(mongoSanitize())
 
 // Expose public folder
